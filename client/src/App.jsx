@@ -116,7 +116,7 @@ const App = () => {
                 >
                   {item.product}
                 </td>
-                <td className="px-6 py-4">{item.price}</td>
+                <td className="px-6 py-4">${item.price}.00</td>
                 <td className="px-6 py-4">{item.quantity}</td>
               </tr>
             ))}

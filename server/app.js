@@ -10,7 +10,8 @@ app.use(cors())
 
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/inventory")
+// mongoose.connect("mongodb://127.0.0.1:27017/inventory")
+mongoose.connect("mongodb+srv://zulqarnainc67:zuki1122@inventoryman.2v9va2q.mongodb.net/?retryWrites=true&w=majority&appName=inventoryman")
 .then(() => {
     console.log("connection to database");
 }).catch(err => {
