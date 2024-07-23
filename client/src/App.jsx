@@ -96,7 +96,7 @@ const App = () => {
           <thead className="text-xl text-gray-700  bg-gray-100 mt-4">
             <tr>
               <th scope="col" className="px-6 py-4 rounded-s-lg">
-                Product Name
+               Name
               </th>
               <th scope="col" className="px-6 py-3">
                 Price
@@ -112,7 +112,7 @@ const App = () => {
               <tr className="bg-white" key={i}>
                 <td
                   scope="row"
-                  className="px-6 py-4 font-medium text-red-900 whitespace-nowrap"
+                  className="px-6 py-4 font-medium text-black whitespace-nowrap"
                 >
                   {item.product}
                 </td>
