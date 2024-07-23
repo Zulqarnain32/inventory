@@ -12,7 +12,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/addProduct", { product, price, quantity })
+      .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
       .then((result) => {
         window.location.reload();
       })
@@ -22,7 +22,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/").then((res) => {
+    axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
       setProducts(res.data);
     });
   }, []);
