@@ -110,7 +110,7 @@ const App = () => {
           <thead className="text-xl text-gray-700  bg-gray-100 mt-4">
             <tr>
              
-              <th scope="col" className="px-6 py-4 rounded-s-lg">
+              <th scope="col" className="text-left px-6 py-4 rounded-s-lg">
                Name
               </th>
               <th scope="col" className="px-2 py-3">
@@ -129,7 +129,7 @@ const App = () => {
               <tr className="bg-white" key={i}>
                 <td
                   scope="row text-left"
-                  className="text-left px-6 py-4 font-medium text-black whitespace-nowrap"
+                  className="text-left px-3 py-4 font-medium text-black whitespace-nowrap"
                 >
                   {item.product}
                 </td>
