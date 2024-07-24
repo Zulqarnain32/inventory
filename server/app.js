@@ -36,6 +36,14 @@ app.get('/', (req,res) => {
 })
 
 
+app.delete("/delete/:id",(req,res) => {
+    const id = req.params.id;
+    ProductModel.findByIdAndDelete({_id:id})
+    .then(product => {
+        res.json(product)
+    }).catch(err => console.log("error deleting product ",product))
+})
+
 app.listen(port, () => {
     console.log("server is listening at port number "+ port);
 })

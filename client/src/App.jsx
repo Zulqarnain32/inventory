@@ -8,11 +8,13 @@ const App = () => {
   const [quantity, setQuantity] = useState(0);
   const [products, setProducts] = useState([]);
   const [query, setQuery] = useState("");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
+    // .post("http://localhost:5000/addProduct", { product, price, quantity })
+    .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
       .then((result) => {
         window.location.reload();
       })
@@ -22,7 +24,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
+    // axios.get("http://localhost:5000/").then((res) => {
+      axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
       setProducts(res.data);
     });
   }, []);
@@ -30,6 +33,17 @@ const App = () => {
   const filteredItems = products.filter((elm) =>
     elm.product.toLowerCase().includes(query.toLowerCase())
   );
+
+
+  const handleDelete = (id) => {
+    console.log("deleted product id ", id);
+    // axios.delete('http://localhost:5000/delete/' + id)
+    axios.delete('https://inventory-one-phi.vercel.app/delete/' + id)
+    .then(res => {
+      console.log(res.data);
+      window.location.reload();
+    }).catch(err => console.log("error while fetching product"))
+  }
 
   return (
     <>
@@ -92,32 +106,35 @@ const App = () => {
       <h1 className="my-6 text-3xl font-bold"> Display Current Stock</h1>
 
       <div className="relative overflow-x-auto">
-        <table className="w-full text-xl text-left ">
+        <table className="w-full text-xl text-center ">
           <thead className="text-xl text-gray-700  bg-gray-100 mt-4">
             <tr>
-              <th scope="col" className="px-6 py-4 rounded-s-lg">
+              <th scope="col" className="px-6 py-4 rounded-s-lg text-left">
                 Product Name
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-2 py-3">
                 Price
               </th>
-              <th scope="col" className="px-6 py-3 rounded-e-lg">
+              <th scope="col" className="px-1 py-3 rounded-e-lg">
                 Quantity
+              </th>
+              <th scope="col" className="px-4 py-3 rounded-e-lg">
+                Action
               </th>
             </tr>
           </thead>
           <tbody>
-            {/* {products.map((item, i) => ( */}
             {filteredItems.map((item, i) => (
               <tr className="bg-white" key={i}>
                 <td
-                  scope="row"
-                  className="px-6 py-4 font-medium text-red-900 whitespace-nowrap"
+                  scope="row text-left"
+                  className="text-left px-1 py-4 font-medium text-red-900 whitespace-nowrap"
                 >
                   {item.product}
                 </td>
-                <td className="px-6 py-4">${item.price}.00</td>
-                <td className="px-6 py-4">{item.quantity}</td>
+                <td className="px-1 py-4">${item.price}.00</td>
+                <td className="px-1 py-4">{item.quantity}</td>
+                <td className="px-1 py-4"><button className="bg-red-400 px-2 py-1 text-white cursor-pointer" onClick={() => handleDelete(item._id)}>Delete</button></td>
               </tr>
             ))}
           </tbody>
