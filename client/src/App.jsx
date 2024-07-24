@@ -109,9 +109,7 @@ const App = () => {
         <table className="w-full text-xl text-center ">
           <thead className="text-xl text-gray-700  bg-gray-100 mt-4">
             <tr>
-              <th scope="col" className="px-6 py-4 rounded-s-lg text-left">
-                Product Name
-              </th>
+             
               <th scope="col" className="px-6 py-4 rounded-s-lg">
                Name
               </th>
