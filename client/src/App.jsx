@@ -112,6 +112,9 @@ const App = () => {
               <th scope="col" className="px-6 py-4 rounded-s-lg text-left">
                 Product Name
               </th>
+              <th scope="col" className="px-6 py-4 rounded-s-lg">
+               Name
+              </th>
               <th scope="col" className="px-2 py-3">
                 Price
               </th>
@@ -128,7 +131,7 @@ const App = () => {
               <tr className="bg-white" key={i}>
                 <td
                   scope="row text-left"
-                  className="text-left px-1 py-4 font-medium text-red-900 whitespace-nowrap"
+                  className="text-left px-6 py-4 font-medium text-black whitespace-nowrap"
                 >
                   {item.product}
                 </td>
