@@ -15,8 +15,8 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-    .post("http://localhost:5000/addProduct", { product, price, quantity })
-    // .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
+    // .post("http://localhost:5000/addProduct", { product, price, quantity })
+     .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
       .then((result) => {
         if(result.data !== "Please fill all the fields"){
           // alert("something wrong")
@@ -36,8 +36,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/").then((res) => {
-      // axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
+    // axios.get("http://localhost:5000/").then((res) => {
+       axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
       setProducts(res.data);
     });
   }, []);
@@ -49,8 +49,8 @@ const App = () => {
 
   const handleDelete = (id) => {
     console.log("deleted product id ", id);
-    axios.delete('http://localhost:5000/delete/' + id)
-    // axios.delete('https://inventory-one-phi.vercel.app/delete/' + id)
+    // axios.delete('http://localhost:5000/delete/' + id)
+     axios.delete('https://inventory-one-phi.vercel.app/delete/' + id)
     .then(res => {
       console.log(res.data);
       window.location.reload();
