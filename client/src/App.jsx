@@ -110,30 +110,30 @@ const App = () => {
           <thead className="text-xl text-gray-700  bg-gray-100 mt-4">
             <tr>
              
-              <th scope="col" className="text-left px-6 py-4 rounded-s-lg">
+              <th scope="col" className="text-left px-3 py-4 rounded-s-lg">
                Name
               </th>
               <th scope="col" className="px-2 py-3">
                 Price
               </th>
               <th scope="col" className="px-1 py-3 rounded-e-lg">
-                Quantity
+                Qty
               </th>
               <th scope="col" className="px-4 py-3 rounded-e-lg">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {filteredItems.map((item, i) => (
-              <tr className="bg-white" key={i}>
+              <tr className="bg-white text-lg" key={i}>
                 <td
                   scope="row text-left"
-                  className="text-left px-3 py-4 font-medium text-black whitespace-nowrap"
+                  className="text-left px-1 py-4 font-medium text-black whitespace-nowrap"
                 >
                   {item.product}
                 </td>
-                <td className="px-1 py-4">${item.price}.00</td>
+                <td className="px-1 py-4">${item.price}</td>
                 <td className="px-1 py-4">{item.quantity}</td>
                 <td className="px-1 py-4"><button className="bg-red-400 px-2 py-1 text-white cursor-pointer" onClick={() => handleDelete(item._id)}>Delete</button></td>
               </tr>
