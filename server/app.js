@@ -10,8 +10,8 @@ app.use(cors())
 
 
 
-// mongoose.connect("mongodb://127.0.0.1:27017/inventory")
-mongoose.connect("mongodb+srv://zulqarnainc67:zuki1122@inventoryman.2v9va2q.mongodb.net/?retryWrites=true&w=majority&appName=inventoryman")
+mongoose.connect("mongodb://127.0.0.1:27017/inventory")
+// mongoose.connect("mongodb+srv://zulqarnainc67:zuki1122@inventoryman.2v9va2q.mongodb.net/?retryWrites=true&w=majority&appName=inventoryman")
 .then(() => {
     console.log("connection to database");
 }).catch(err => {
@@ -21,9 +21,15 @@ mongoose.connect("mongodb+srv://zulqarnainc67:zuki1122@inventoryman.2v9va2q.mong
 
 //? add new product 
 app.post("/addProduct", (req,res) => {
-    const product = req.body;
-    ProductModel.create(req.body)
-    res.json(product)
+    const {product,price,quantity} = req.body;
+    if(!product || !price || !quantity){
+       res.json("Please fill all the fields")
+    } else {
+        const item = req.body
+        ProductModel.create(item)
+        res.json(item)
+    }
+  
 })
 
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 import("./App.css");
 
 const App = () => {
@@ -8,15 +9,26 @@ const App = () => {
   const [quantity, setQuantity] = useState(0);
   const [products, setProducts] = useState([]);
   const [query, setQuery] = useState("");
+  const [error,setError] = useState("")
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-    // .post("http://localhost:5000/addProduct", { product, price, quantity })
-    .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
+    .post("http://localhost:5000/addProduct", { product, price, quantity })
+    // .post("https://inventory-one-phi.vercel.app/addProduct", { product, price, quantity })
       .then((result) => {
-        window.location.reload();
+        if(result.data !== "Please fill all the fields"){
+          // alert("something wrong")
+          console.log(result.data );
+          swal("Success!", "Product added successfully!", "success")
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          setError("Please fill all the fields")
+        }
+    
       })
       .catch((err) => {
         console.log("error while fetching");
@@ -24,8 +36,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    // axios.get("http://localhost:5000/").then((res) => {
-      axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
+    axios.get("http://localhost:5000/").then((res) => {
+      // axios.get("https://inventory-one-phi.vercel.app/").then((res) => {
       setProducts(res.data);
     });
   }, []);
@@ -37,8 +49,8 @@ const App = () => {
 
   const handleDelete = (id) => {
     console.log("deleted product id ", id);
-    // axios.delete('http://localhost:5000/delete/' + id)
-    axios.delete('https://inventory-one-phi.vercel.app/delete/' + id)
+    axios.delete('http://localhost:5000/delete/' + id)
+    // axios.delete('https://inventory-one-phi.vercel.app/delete/' + id)
     .then(res => {
       console.log(res.data);
       window.location.reload();
@@ -92,15 +104,18 @@ const App = () => {
               onChange={(e) => setQuantity(e.target.value)}
               className="py-2 px-4 w-full text-xl mt-1 border border-black"
             />
+            <p className="text-red-500 font-semibold mt-4">{error}</p>
             <button
               type="submit"
-              className="px-3 py-2 bg-green-500 cursor-pointer text-white mt-10 block mx-auto hover:bg-green-800 w-full"
+              className="px-3 py-2 bg-green-500 cursor-pointer text-white mt-6 block mx-auto hover:bg-green-800 w-full"
             >
               Add Product
             </button>
           </form>
         </div>
       )}
+
+
 
     
       <h1 className="my-6 text-3xl font-bold"> Display Current Stock</h1>
